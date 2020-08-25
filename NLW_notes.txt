@@ -1,0 +1,295 @@
+
+NLW
+
+Pilares do método - Foco(focar em apenas uma tecnologia), Prática(implementar o que foi estudado mesmo sem ser contratado)
+ e Grupo(quem está no mercado junto com outros devs evolui muito mais rápido);
+Paciência - pular etapas não faz você chegar mais rápido aos objetivos que quer alcançar, pelo contrário
+
+O único objetivo é gerar valor para empresas e ser capaz de resolver os problemas do mundo real
+As melhores vagas são preenchidas por recrutadores e indicação
+linkedin, github, compartilhar conhecimento, melhorar aplicações,adicionar funcionalidades
+tecnologias diferentes, pedir auxílio
+Importante: networking e marketing pessoal
+
+Qual tecnologia usar/estudar?
+Resposta- 
+Qual tecnologia eu posso usar no mundo real, tem mercado para isso?
+Pensar em qual tecnologia é melhor para você, para seu momento, para seu contexto e objetivo.
+Que tipo de profissional o mercado está buscando?
+Quais empresas utilizam essa tecnologia?
+Qual o ecossistema por trás dela?
+Quem está por trás do desenvolvimento dela?
+Quantas oportunidades tem para essa tecnologia?
+Quais os problemas que essa tecnologia resolve?
+Onde eu quero chegar com essa tecnologia?
+
+
+CONFIGURAÇÕES INICIAIS
+
+Launchbase - extensaõ do vscode para aparencia melhor
+Live Server - extenção vai atualizar a página assim que você salvar o documento 
+sigma:  site para desenhar a interface do site
+obs.: abrir arquivo index com botão direito no próprio vscode primeira opção
+
+
+ATALHOS VS CODE
+ctrl + shift+p = abre pesquisa, escrever shortcuts para achar atalhos para teclado
+alt+z = atalho para quebrar texto não visivel para que fique visível
+ctrl + b = abre e fecha a janela lateral do vscode
+ctrl + d = seleciona o próximo item com o mesmo nome do que está tualmente selecionado 
+ctrl + p = pesquisar por páginas do projeto atual
+ctrl + k + c = comentar
+ctrl + k + u = descomentar
+
+
+FRONT-END
+
+mobile first - fazer tela primeiramente como ficaria em um celular
+
+<!--src vem do ingles sourse(fonte)-->
+css : cascadind stylesheet - folah de estilo em cascata
+O id tem uma força maior, depois classe, depois tag
+uma cascata tem força maior que o restante 
+Exemplo de cascata.:
+.bodie #page-landing{color: gray;}
+
+Colocar uma barra na frente de uma localização do arquivo css diz que ele está na raiz 
+
+Medidas para tamanho da fonte
+/*o rem funciona pegando o tamanho da fonte definida no root da página como referência, ele é relativo ao root element*/
+/*a porcentagem é relativa ao elemento superior a ele*/
+/*a quantidade em px é mais forte que as anteriores, ou seja, não é flexível*/
+
+"Todo elemento é uma caixa"
+
+h1 tem, por padrão, display tipo block(ocupa toda a linha)
+
+Uma grid divide a página em colunas e linhas 
+ex.:
+display: grid;
+grid-template-colums: 1fr 1fr 1fr; // divide em três frações(partes) iguais 
+também posso usar porcentagem e px
+
+posso usar grids com o repeat, por exemplo,grid-template-colums: repeat(4, 1fr); iso vai criar
+quatro colunas de 1fr
+
+@media (min-width: 1100px){/*quando a tela for acima de 1100px*/
+    #page-landing #container{
+        max-width: 1100px;
+        display: grid;
+        grid-template-columns: 2fr 1fr 2fr;/*serão 3 colunas, divididas em 2, 1 e 2 frações*/
+        grid-template-rows: 350px 1fr;/*serão duas linhas divididas em 350px e uma fração*/
+        grid-template-areas:/*dando nomes a cada área*/
+        "proffy image image"
+        "button button texting";
+ 	gap: 60px;/*aplica um vão de 60px entre as grids*/
+    }
+
+    /*Definindo áreas da grid de acordo com as marcações*/
+    .logo-container{
+        grid-area: proffy;
+        text-align: initial;
+	align-self: center;/*o elemento estará alinhado ao centro dele mesmo(da grid)*/
+    }
+
+    }
+    .logo-container img{
+        height: 100%;
+    }
+
+    .hero-image{
+        grid-area: image;
+    }
+
+    .buttons-container{
+        grid-area: button;
+
+    }
+
+    .total-conections{
+        grid-area: texting;
+    }
+}
+
+Em telas maiores como definido acima é melhor utilizar px ao rem pois tende a ser algo mais fixo
+
+.input-block:focus-within::after{ /*quando o elemento input-block estiver em foco(selecionado) será criado o elemento depois dele*/
+    
+}
+
+position: absolute -> posiciona o elemento acima da página, por isso deve-se definir o posicionamento left. right, bottom etc.
+position: relative-> quando eu quero que um elemento tenha o posicionamento relativo a um contexto
+por exemplo, quando eu digo que um elemento dentro de outro é absoluto e quero que ele seja absoluto somente
+nesse contexto eu uso o relativo no pai do que eu coloquei que seria absoluto
+
+Os elementos que quero colocar no cabeçalho da minha aplicação ficarão na tag header
+Depois do header eu uso  a tag main para colocar a parte principal da página
+dentro do main vão existir várias tags articles   
+Dentro dos articles poderá existir a tag header e footer
+
+
+Quando é display:inline; a propriedade margin-top não é aceita, para isso o display precisa ser display:block;
+
+Quando eu quero que uma modificação no css seja colocada a penas em um primeiro nível eu uso uma seta
+Ex.: pega apenas o primeiro nível de p dentro de teacher-item
+.teacher-item > p{
+    padding: 0 32px;
+}
+
+Quando for utilizar o textarea evitar dar quebra de linha
+Todo input deve ter um name para ser usado no backend
+
+No exemplo abaixo eu pego um input-block que tenha anterior a ele um input-block
+#page-give-classes .input-block+.input-block{}
+
+No exemplo abaixo eu pego um textarea-block que tenha anterior a ele um input-block
+#page-give-classes .input-block+.textarea-block{}
+
+Para enviar os dados de um formulário o botão precisa estar dentro do formulário, mas em alguns casos
+eu posso colocar um button fora do formulário e indicar pelo id
+Ex.:
+<form action="" id="create-class">
+<footer>
+    <button type="submit" form="create-class">Salvar cadastro</button>
+</footer>
+
+transform: translate(-5px);/*desloca  em 5px para esquerda*/
+
+transform: translateY(-5px);/*desloca  em 5px para cima*/
+
+margin-top: 0 !important; faz o código ter importancia maior, ter cuidado ao usar só para corrigir leyout
+
+BACK-END
+
+Eu consigo "rodar" o javascript direto do navegador e modificar as propriedades da página html
+funciona com orientação a objetos
+
+O objeto que tenho para acessar a página é o document, a partir daí posso acessar propriedades e funcionalidades
+
+Ex.: se eu coloco o código abaixo no console de uma página, ela é redimencionada para o google
+document.location.href="http://google.com"
+Todo texto que eu precisar informar para o javascript uso aspas
+
+Ex2.: sececionei o seletor container da página e modifiquei o objeto width para 500px
+document.querySelector("#container").style.width = "500px"
+
+Dentro do html para modificar algo com js eu uso a tag script que só reconhece o que há acima
+
+Ex:
+        <script>
+            document.querySelector("#container").style.backgroundColor = "red"
+        </script>
+
+O js é voltado a eventos, ou seja, quando por exemplo, o usuário clicar em um botão será executado um evento
+
+console.log("Mensagem aqui") // uso para "conversar" com o console(fazer testes)
+Pesquisar sobre DOM
+
+O Backend serve para receber pedidos(regra de negócio) e prepará-los devolvendo uma resposta
+Essa resposta deve ser condizente com a realidade do momento e da empresa, o cliente não pode modificar o backend
+
+Git Bash-podemos programar por ele, que trás uma ideia universal de sistemas unix, como linux e mac,
+ele trá essa ideia de padronização também no windows
+Para utilizar no vs code vai em terminal e modifica em powershel/ escolhe select defalt shell/ seleciona git bash/ 
+fecha(ou clica na lixeira) e abre o terminal novamente
+
+Comandos:
+crrl +l => limpa o terminal
+cd /c/nlw => modifica o diretório atual para o que informei
+pwd => mostra em que pasta eu estou
+node -v => mostra a versão de um programa(nesse caso o node)
+npm init -y =>na pasta atual que estou, vai criar um novo projeto no formato json(java script object notation)
+npm install express - pede ao npm para instalar o express, um conjunto de modulosou depend}encias que é necessário para que ele funcione
+e o package-lock. json que mapeia as depêndencias da aplicação
+
+o node vai rodar o java script
+o npm vem instalado junto com o node e é responsável por fazer o gerenciamento de dependências de pacotes ou sub- aplicações
+
+http://127.0.0.1:5500 - protocolo de identificação(IP) + porta utilizada, também posso utilizar localhost:500 (servidor local  + porta)
+Todas as máquinas têm um IP e a porta padrão é 80
+
+Toda vez que eu faço uma alteração eu tenho que desligar o sevidor(ctrl+c), limpar(ctrl+ l) e atualizar novamente
+Existe uma ferramenta que faz isso chamada nodemon
+npm install nodemon  - D  - o -D é um argumento q significa que vai ser instalado em um lugar específico da aplicação 
+ que quando a  a aplicação estiver boa, não vai ser utilizado, apenas no momento do desenvolvimento
+
+Após isso, eu modifico o arquivo package.json, na parte de scripts e coloco o seguinte:
+ "scripts": {
+    "dev": "nodemon src/server.js"
+  },
+
+depois disso, basta dar o comando $ npm run dev no terminal para que funcione
+
+console.log(__dirname); - esse comando no backend mostra no terminal a pasta que está o dirname
+
+Posso rodar a aplicação diretamente do bash abrindo a pasta e depois o arquivo no node
+Nesse caso, node src/server.js ; isso evita que a aplicação dependa do vs code para rodar
+
+Configuração do servidor:
+O get é a configuração da rota, exemplo:
+server.use(express.static("public"))
+.get("/study", (req, res) => { // pega a requisição em /study e devolve uma resposta
+    return res.sendFile(__dirname + "/views/study.html") // retorna o diretório onde está /study
+}).listen(5500))//coloca na porta 5500
+
+outra forma usando função
+function pageStudy(req, res){
+    return res.sendFile(__dirname + "/views/study.html")
+}
+
+server.use(express.static("public"))
+.get("/study", (pageStudy))
+.listen(5500)// coloca na porta ou rota 5500
+
+Template: 
+abrir novo split no terminal e digitar o comando
+npm install nunjucks
+NunJucks é um template que permite fazer várias coisas com o html, para saber mais entrar no site e ler a documentação
+
+Com ajuda do nunjucks fizemos muita coisa funcionar e renderizamos vários códigos html
+
+Somente com isso não é possível armazenar dados recebidos pelo formulário, pois ficam na memória primária
+Para isso precisamos de um banco de dados que pegará esses dados e guardará em na memória secundária
+
+*acessar plataforma em rocketsit.com.br, criar conta, preencher perfil o melhor que eu puder, 
+compartrilhar o perfil na comunidade exclusiva do NLW, para me conectar com as pessoas 
+
+O banco de dados utilizado foi o sQLite, que é bom para quem está começando
+Para instalar o banco de dados:
+no terminal digitar npm install sqlite-async
+
+const Database = require('sqlite-async')//requisitar banco
+Database.open(__dirname + '/database.sqlite').then(execute)//quando abrir, executara função execute
+O banco de dados pode demorar um pouco para abrir, e a linha que vem após ele pode executar antes dele, 
+por isso, é bom colocar o then(function), assim ele chama a função
+
+node src/database/db.js - vai abrir o banco de dados db.js no terminal
+Para conseguir visualizar as tabelas criadas no vs code instalar o plugin sQLite
+
+// a função await é usada para esperar um banco de dados ser carregado antes de carregar o outro
+para utilizar eu preciso colocar o async antes dda função utilizada
+mudule.exports = async function(db, {proffyValue, classValue, classScheduleValue }){//pega as tabelas criadas
+    //inserir dados na tabela de proffys
+    await db.run(``) // deve ser com crases
+}
+o await serve para dizer:  esperare, e se tudo der certo, faça isso
+trexo de código retirado do código geral:
+        //Se tiver dados (data)
+        const isNotEmpty = Object.keys(data).length > 0
+        if (isNotEmpty){
+    
+            data.subject = getSubject(data.subject)
+            //console.log("Entrei aqui")
+    
+            //adicionar dados a lista de proffs
+            proffys.push(data)
+
+
+query é aquela parte da url que mostra os dados: nome e valor. Usado no método GET. Quando usar POST colocar body
+Const antes da variável que não quer que mude é uma boa prática 
+
+Sites com assuntos que trabalhamos:
+front-end:https://www.notion.so/Front-end-ab15ef64dbe7459aba38364cf60af9d2
+back-end:https://www.notion.so/Back-end-4440c9aeda8c47d4856a8e4d4069e379
+Banco de Dados:https://www.notion.so/Banco-de-Dados-c6b7589f7ca740979a746d9289ab71f6 
+Layout: https://www.notion.so/Layout-Proffy-3d5f45f54ec54ef9b2103565b7cce4e1#3ab77d5a6f3d4b918da59ffb9c82d556
